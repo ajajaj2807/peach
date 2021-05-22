@@ -9,6 +9,7 @@ import { Button } from "@chakra-ui/button";
 import Icon from "@chakra-ui/icon";
 import { Box, Flex, Heading, Link, Stack } from "@chakra-ui/layout";
 import React from "react";
+import { signout } from "@/lib/auth";
 
 const DashboardShell = ({ children }) => {
   const auth = useAuth();
@@ -37,8 +38,13 @@ const DashboardShell = ({ children }) => {
           <Link>Sites</Link>
         </Stack>
         <Flex alignItems="center">
-          <Link mr={4}>Account</Link>
-          <Avatar size="sm" src={auth.user.photoUrl}></Avatar>
+          {auth.user &&
+            <Button variant="ghost" onClick={auth.signout} mr={2}>
+              Sign Out
+            </Button>
+          }
+
+          <Avatar size="sm" src={auth?.user?.photoUrl}></Avatar>
         </Flex>
       </Flex>
       <Flex backgroundColor="gray.100" p={8} height="100vh">
@@ -59,7 +65,7 @@ const DashboardShell = ({ children }) => {
             </BreadcrumbItem>
           </Breadcrumb>
           <Heading mb={4} color="black">
-            Sites
+            My Sites
           </Heading>
           {children}
         </Flex>

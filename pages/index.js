@@ -37,7 +37,7 @@ export default function Home() {
       {!auth?.user && (
         <Button mt={4} p={2} paddingLeft={4} paddingRight={4}  size="small" onClick={(e) => auth.signinwithGithub()}>Sign in</Button>
       )}
-      {auth?.user && <Button onClick={(e) => auth.signout()}>Sign Out</Button>}
+      {auth?.user && <Button as="a" href="/dashboard">Go to Dashboard</Button>}
     </Flex>
   );
 }

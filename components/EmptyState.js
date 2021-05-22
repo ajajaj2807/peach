@@ -6,7 +6,6 @@ import DashboardShell from "./DashboardShell";
 
 const EmptyState = () => {
   return (
-    <DashboardShell>
       <Flex
         align="center"
         direction="column"
@@ -22,7 +21,6 @@ const EmptyState = () => {
         <Text mb={4}>Welcome 👋 Let's get started</Text>
         <AddSiteModal />
       </Flex>
-    </DashboardShell>
   );
 };
 
