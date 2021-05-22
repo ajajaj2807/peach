@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { mutate } from "swr";
 
 import {
   Modal,
@@ -15,24 +16,27 @@ import {
   Button,
   useDisclosure,
   useToast,
-  Icon,
 } from "@chakra-ui/react";
+
 import { createSite } from "@/lib/db";
 import { useAuth } from "@/lib/auth";
+import fetcher from "utils/fetcher";
 
-const AddSiteModal = () => {
+const AddSiteModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef();
   const toast = useToast();
   const auth = useAuth();
   const { handleSubmit, register } = useForm();
+
   const createSiteLocal = ({ name, url }) => {
-    createSite({
+    const newSite = {
       author: auth.user.uid,
       createdAt: new Date().toISOString(),
       name,
       url,
-    });
+    };
+    createSite(newSite);
     toast({
       title: "Hurray! 🎉",
       description: "Your site has been added successfully.",
@@ -40,13 +44,30 @@ const AddSiteModal = () => {
       duration: 3000,
       isClosable: true,
     });
+    mutate(
+      "/api/sites",
+      async (data) => {
+        return { sites: [...data.sites, newSite] };
+      },
+      false
+    );
     onClose();
   };
 
   return (
     <>
-      <Button fontWeight="medium" maxWidth="300px" onClick={onOpen}>
-        Add a site
+      <Button
+        onClick={onOpen}
+        backgroundColor="gray.900"
+        color="white"
+        fontWeight="medium"
+        _hover={{ bg: "gray.700" }}
+        _active={{
+          bg: "gray.800",
+          transform: "scale(0.95)",
+        }}
+      >
+        {children}
       </Button>
 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>

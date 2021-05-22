@@ -10,6 +10,7 @@ import Icon from "@chakra-ui/icon";
 import { Box, Flex, Heading, Link, Stack } from "@chakra-ui/layout";
 import React from "react";
 import { signout } from "@/lib/auth";
+import AddSiteModal from "./AddSiteModal";
 
 const DashboardShell = ({ children }) => {
   const auth = useAuth();
@@ -38,11 +39,11 @@ const DashboardShell = ({ children }) => {
           <Link>Sites</Link>
         </Stack>
         <Flex alignItems="center">
-          {auth.user &&
+          {auth.user && (
             <Button variant="ghost" onClick={auth.signout} mr={2}>
               Sign Out
             </Button>
-          }
+          )}
 
           <Avatar size="sm" src={auth?.user?.photoUrl}></Avatar>
         </Flex>
@@ -64,9 +65,12 @@ const DashboardShell = ({ children }) => {
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Heading mb={4} color="black">
-            My Sites
-          </Heading>
+          <Flex justifyContent={"space-between"}>
+            <Heading mb={4} color="black">
+              My Sites
+            </Heading>
+            <AddSiteModal> + Add Site </AddSiteModal>
+          </Flex>
           {children}
         </Flex>
       </Flex>
