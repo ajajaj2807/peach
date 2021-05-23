@@ -10,10 +10,8 @@ import { useAuth } from "@/lib/auth";
 import SiteTable from "@/components/SiteTable";
 
 export default function Dashboard() {
-  const auth = useAuth();
-  const { data } = useSWR("/api/sites", fetcher);
-
-  // console.log(data);
+  const { user } = useAuth();
+  const { data } = useSWR(user ? ["/api/sites", user.token] : null, fetcher);
 
   if (!data) {
     return (
@@ -25,7 +23,7 @@ export default function Dashboard() {
 
   return (
     <DashboardShell>
-      { data.sites ? <SiteTable  sites={data.sites} /> : <EmptyState />}
+      {data.sites ? <SiteTable sites={data.sites} /> : <EmptyState />}
     </DashboardShell>
   );
 }
