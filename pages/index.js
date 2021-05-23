@@ -41,28 +41,62 @@ export default function Home() {
         />
       </Icon>
 
-      <Text mt={4} maxW="50%" textAlign="center">
+      <Text mt={4} maxW="60%" textAlign="center" fontSize="large">
         <b>Peach </b> lets you recieve feedback on your sites, blogs or apps in
         just a single line of code. You also get your own dashboard to manage
         your sites with ease.
       </Text>
-      <Text my={4} fontSize="xs" color="gray.700">
+      <Text my={4} fontSize="s" color="gray.700">
         Inspired from <i>React-2025</i> course.
       </Text>
       {!auth?.user && (
-        <Button
-          mt={4}
-          p={2}
-          paddingLeft={4}
-          paddingRight={4}
-          size="small"
-          onClick={(e) => auth.signinwithGithub()}
-        >
-          Sign in
-        </Button>
+        <Flex flexDirection="column" align="center" justify="center">
+          <Button
+            mt={4}
+            p={2}
+            width="full"
+            backgroundColor="gray.900"
+            color="white"
+            _hover={{ bg: "gray.700" }}
+            _active={{ bg: "gray.800", transform: "scale(0.95)" }}
+            paddingLeft={4}
+            paddingRight={4}
+            size="lg"
+            onClick={(e) => auth.signinwithGithub()}
+          >
+            Sign In with Github
+          </Button>
+          <Button
+            mt={4}
+            p={2}
+            width="full"
+            backgroundColor="gray.900"
+            color="white"
+            _hover={{ bg: "gray.700" }}
+            _active={{ bg: "gray.800", transform: "scale(0.95)" }}
+            paddingLeft={4}
+            paddingRight={4}
+            size="lg"
+            onClick={(e) => auth.signinwithGoogle()}
+          >
+            Sign In with Google
+          </Button>
+        </Flex>
       )}
       {auth?.user && (
-        <Button as="a" href="/dashboard">
+        <Button
+          as="a"
+          href="/dashboard"
+          mt={4}
+          p={2}
+          backgroundColor="gray.900"
+          color="white"
+          _hover={{ bg: "gray.700" }}
+          _active={{ bg: "gray.800", transform: "scale(0.95)" }}
+          paddingLeft={4}
+          paddingRight={4}
+          size="lg"
+        >
           Go to Dashboard
         </Button>
       )}
