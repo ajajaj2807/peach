@@ -18,6 +18,15 @@ export default function Home() {
     >
       <Head>
         <title>Peach</title>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          if(document.cookie && document.cookie.includes('peach-auth')){
+            window.location.href = "/dashboard"
+          }
+        `,
+          }}
+        />
       </Head>
       <Icon
         name="logo"
@@ -33,16 +42,30 @@ export default function Home() {
       </Icon>
 
       <Text mt={4} maxW="50%" textAlign="center">
-        <b>Peach </b> lets you recieve feedback on your sites, blogs or apps in just a single line of code.
-        You also get your own dashboard to manage your sites with ease.
+        <b>Peach </b> lets you recieve feedback on your sites, blogs or apps in
+        just a single line of code. You also get your own dashboard to manage
+        your sites with ease.
       </Text>
       <Text my={4} fontSize="xs" color="gray.700">
         Inspired from <i>React-2025</i> course.
       </Text>
       {!auth?.user && (
-        <Button mt={4} p={2} paddingLeft={4} paddingRight={4}  size="small" onClick={(e) => auth.signinwithGithub()}>Sign in</Button>
+        <Button
+          mt={4}
+          p={2}
+          paddingLeft={4}
+          paddingRight={4}
+          size="small"
+          onClick={(e) => auth.signinwithGithub()}
+        >
+          Sign in
+        </Button>
       )}
-      {auth?.user && <Button as="a" href="/dashboard">Go to Dashboard</Button>}
+      {auth?.user && (
+        <Button as="a" href="/dashboard">
+          Go to Dashboard
+        </Button>
+      )}
     </Flex>
   );
 }
