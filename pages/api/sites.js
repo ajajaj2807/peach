@@ -1,11 +1,13 @@
-import { getAllSites } from "@/lib/db-admin";
-import db from "@/lib/firebase-admin";
+import { getUserSites } from "@/lib/db-admin";
+import { auth } from "@/lib/firebase-admin";
 
-export default async (_, res) => {
-  const {sites, error} = await getAllSites();
-  
-  if (error) {
-    res.status(500).json({ error });
+export default async (req, res) => {
+  try {
+    const token = req.headers.token;
+    const { uid } = await auth.verifyIdToken(token);
+    const { sites } = await getUserSites(uid);
+    res.status(200).json({ sites });
+  } catch (err) {
+    res.status(500).json({ err });
   }
-  res.status(200).json({ sites });
 };

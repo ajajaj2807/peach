@@ -1,3 +1,4 @@
+import { db } from "@/lib/firebase-admin";
 import { getAllFeedback } from "@/lib/db-admin";
 
 export default async (req, res) => {

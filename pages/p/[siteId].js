@@ -22,6 +22,7 @@ export async function getStaticProps(ctx) {
     props: {
       initialFeedback: feedback,
     },
+    revalidate: 1,
   };
 }
 
