@@ -9,6 +9,7 @@ import SiteTableSkeleton from "@/components/SkeletonTable";
 import { useAuth } from "@/lib/auth";
 import SiteTable from "@/components/SiteTable";
 import SiteTableHeader from "@/components/SiteTableHeader";
+import Head from "next/head";
 
 export default function Dashboard() {
   const { user } = useAuth();
