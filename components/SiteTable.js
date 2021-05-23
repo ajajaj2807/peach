@@ -4,6 +4,7 @@ import { format, parseISO } from "date-fns";
 import { defaultConfig } from "next/dist/next-server/server/config-shared";
 import React from "react";
 import { Table, Td, Th, Tr } from "./Table";
+import NextLink from "next/link";
 
 const SiteTable = ({ sites }) => (
   <Table>
@@ -22,7 +23,9 @@ const SiteTable = ({ sites }) => (
           <Td fontWeight="medium">{site.name}</Td>
           <Td>{site.url}</Td>
           <Td>
-            <Link>View Feedback</Link>
+            <NextLink href="/p/[siteId]" as={`/p/${site.id}`} passHref>
+              <Link>View Feedback</Link>
+            </NextLink>
           </Td>
           <Td>{format(parseISO(site.createdAt), "PPpp")}</Td>
         </Box>
