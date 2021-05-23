@@ -8,8 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.2",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "date-fns": "^2.21.3",
+    "firebase": "^8.6.2",
+    "firebase-admin": "^9.8.0",
+    "framer-motion": "4",
     "next": "10.x",
     "react": "17.x",
-    "react-dom": "17.x"
+    "react-dom": "17.x",
+    "react-hook-form": "^7.6.4",
+    "swr": "^0.5.6"
   }
 }
