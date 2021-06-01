@@ -49,7 +49,7 @@ const SiteFeedback = ({ initialFeedback }) => {
     e.preventDefault();
     const newFeedback = {
       author: auth.user.name,
-      authodId: auth.user.uid,
+      authorId: auth.user.uid,
       siteId: router.query.siteId,
       text: inputEl.current.value,
       createdAt: new Date().toISOString(),
