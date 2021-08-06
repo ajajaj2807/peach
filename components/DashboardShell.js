@@ -10,12 +10,18 @@ const DashboardShell = ({ children }) => {
   const auth = useAuth();
   return (
     <Flex flexDirection="column">
+      <Box height="20px" w="full" mb={8} background="transparent"></Box>
       <Flex
         backgroundColor="white"
         alignItems="center"
         justifyContent="space-between"
         py={4}
         px={8}
+        backdropFilter="blur(40px)"
+        position="fixed"
+        w="full"
+        zIndex={5}
+        backgroundColor="rgba(255, 255, 255, 0.1)"
       >
         <Stack isInline spacing={4} align="center">
           <NextLink href="/" passHref>
